@@ -2,10 +2,10 @@ package bd
 
 import (
 	"context"
-	"log"
 	"github.com/afavendanor/twittor.git/models"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"log"
 	"time"
 )
 
@@ -28,7 +28,7 @@ func BuscarPerfil(ID string) (models.Usuario, error)  {
 	err := colect.FindOne(context, condicion).Decode(&perfil)
 	perfil.Password=""
 	if err != nil {
-		log.Fatal("Registro no encontrado " + err.Error())
+		log.Println("Registro no encontrado " + err.Error())
 		return perfil, err
 	}
 	return perfil, nil

@@ -1,9 +1,9 @@
 package jwt
 
 import (
-	"time"
-	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/afavendanor/twittor.git/models"
+	jwt "github.com/dgrijalva/jwt-go"
+	"time"
 )
 
 /*
@@ -11,7 +11,7 @@ import (
  */
 func GenerarJWT(t models.Usuario) (string, error)  {
 
-	miClave := []byte("MastardelDesarrollo")
+	miClave := []byte("MastersdelDesarrollo")
 
 	payload := jwt.MapClaims{
 		"email": t.Email,
