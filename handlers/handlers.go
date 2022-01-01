@@ -21,6 +21,8 @@ func Manejadores() {
 	router.HandleFunc("/login", middlew.ChequeoBD(routers.Login)).Methods("POST")
 	router.HandleFunc("/verperfil", middlew.ChequeoBD(middlew.ValidarJWT(routers.VerPerfil))).Methods("GET")
 	router.HandleFunc("/modificarperfil", middlew.ChequeoBD(middlew.ValidarJWT(routers.ModificarPerfil))).Methods("PUT")
+	router.HandleFunc("/tweet", middlew.ChequeoBD(middlew.ValidarJWT(routers.GraboTweet))).Methods("POST")
+	router.HandleFunc("/leotweets", middlew.ChequeoBD(middlew.ValidarJWT(routers.LeoTweets))).Methods("GET")
 
 
 	PORT := os.Getenv("PORT")
