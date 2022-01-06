@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/afavendanor/twittor.git/bd"
 	"github.com/afavendanor/twittor.git/models"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"net/http"
 )
 
@@ -14,13 +15,14 @@ func Registro(w http.ResponseWriter, r *http.Request) {
 	var t models.Usuario
 
 	err := json.NewDecoder(r.Body).Decode(&t)
+	t.ID = primitive.NewObjectID()
 	if err != nil {
 		http.Error(w, "Error en los datos recibidos "+err.Error(), http.StatusBadRequest)
 		return
 	}
 
 	if len(t.Email) == 0 {
-		http.Error(w, "El email de usuario es rquerido", http.StatusBadRequest)
+		http.Error(w, "El email de usuario es requerido", http.StatusBadRequest)
 		return
 	}
 

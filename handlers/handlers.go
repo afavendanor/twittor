@@ -26,6 +26,19 @@ func Manejadores() {
 	router.HandleFunc("/tweet", middlew.ChequeoBD(middlew.ValidarJWT(routers.EliminarTweet))).Methods("DELETE")
 
 
+	router.HandleFunc("/avatar", middlew.ChequeoBD(middlew.ValidarJWT(routers.SubirAvatar))).Methods("POST")
+	router.HandleFunc("/avatar", middlew.ChequeoBD(middlew.ValidarJWT(routers.ObtenerAvatar))).Methods("GET")
+	router.HandleFunc("/banner", middlew.ChequeoBD(middlew.ValidarJWT(routers.SubirBanner))).Methods("POST")
+	router.HandleFunc("/banner", middlew.ChequeoBD(middlew.ValidarJWT(routers.ObtenerBanner))).Methods("GET")
+
+	router.HandleFunc("/relacion", middlew.ChequeoBD(middlew.ValidarJWT(routers.AltaRelacion))).Methods("POST")
+	router.HandleFunc("/relacion", middlew.ChequeoBD(middlew.ValidarJWT(routers.BajaRelacion))).Methods("DELETE")
+	router.HandleFunc("/relacion", middlew.ChequeoBD(middlew.ValidarJWT(routers.ConsultaRelacion))).Methods("GET")
+
+	router.HandleFunc("/usuarios", middlew.ChequeoBD(middlew.ValidarJWT(routers.ListaUsuarios))).Methods("GET")
+
+	router.HandleFunc("/tweets", middlew.ChequeoBD(middlew.ValidarJWT(routers.LeoTweetsSeguidores))).Methods("GET")
+
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
 		PORT = "8080"
